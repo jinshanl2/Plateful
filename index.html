@@ -1,21 +1,31 @@
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Plateful</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
        body {
         margin: 0;
         padding: 0;
         height: 200vh;
         overflow-x: hidden;
+        font-family: "Nunito", system-ui, sans-serif;
         }
+        /* The big "Plateful" word, filled with the dessert photo. */
         .background {
             background-image: url("background01.jpg");
             background-size: cover;
             background-position: 50% 50%;
             height: 255vh;
-            font: 900 23rem'';
+            font-weight: 900;
+            /* Scales with the screen: huge on laptops, still fits on phones. */
+            font-size: clamp(5rem, 22vw, 23rem);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             position: relative;
             text-align: center;
@@ -37,35 +47,51 @@
             position:absolute;
             text-align:center;
             width:100%;
+            margin-top: 24px;
             letter-spacing: 10px;
             color: #fff;
+            font-size: clamp(1.6rem, 5vw, 3rem);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
         }
         h2{
             position:absolute;
             letter-spacing: 2px;
             top:120vh;
-            width: 60%;
+            width: min(60%, 760px);
             color: #fff;
             left: 50%;
             transform: translateX(-50%);
             padding:30px;
+            margin: 0;
             background-color: rgba(0,0,0,0.3);
+            font-size: clamp(1.05rem, 2.4vw, 1.6rem);
+            line-height: 1.5;
         }
+        /* The Start! button, centred under the welcome text. */
         .button {
             position: absolute;
-            display: inline-block;
-            text-align: center;
             top: 150vh;
-            left: 40%;
-            height: 50px;
-            width: 200px;
-            padding: 10px 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: inline-block;
+            min-width: 200px;
+            padding: 14px 24px;
             background-color: #86CEFF;
             color: white;
-            font-size: 40px;
+            font-family: "Press Start 2P", monospace;
+            font-size: clamp(1.1rem, 3vw, 1.8rem);
             text-decoration: none;
+            text-shadow: 2px 2px 0 #23506b;
+            border: 4px solid #23506b;
+            box-shadow: 5px 5px 0 #23506b;
             border-radius: 5px;
             cursor: pointer;
+        }
+        .button:focus-visible { outline: 4px solid #ffd84d; outline-offset: 4px; }
+        .button:active { transform: translate(calc(-50% + 3px), 3px); box-shadow: 2px 2px 0 #23506b; }
+
+        @media (max-width: 600px) {
+            h2 { width: calc(100% - 32px); padding: 20px; box-sizing: border-box; }
         }
     </style>
 </head>
@@ -75,7 +101,7 @@
     <br>
     <div class="background"><span>Plateful</span></div>
     <h2>
-        Welcome to Plateful! Discover recipes with the ingredients you have in your fridge, 
+        Welcome to Plateful! Discover recipes with the ingredients you have in your fridge,
         find what you're missing for recipes you like, and add it all to your cart — in one place, Plateful.
     </h2>
 
@@ -83,19 +109,19 @@
         <a href="main.html" class="button">Start!</a>
     </div>
 
-
-
     <script>
+        // Moves the dessert photo inside the "Plateful" letters as you scroll.
         const background = document.querySelector(".background")
         document.addEventListener('scroll', () => {
-            const scroll = window.scrollY
+            const scrollY = window.scrollY
 
             if(scrollY !== 0){
                 background.style.backgroundPosition = `calc(50% + ${scrollY}px) calc(50% + ${scrollY}px)`;
             }else{
                 background.style.backgroundPosition = '';
-            } 
+            }
         });
     </script>
 
 </body>
+</html>
