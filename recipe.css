@@ -35,6 +35,6 @@ p.container {
 }
 
 .img_wrap1:hover .img_description1 {
-  visibility: visible;
-  opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }
